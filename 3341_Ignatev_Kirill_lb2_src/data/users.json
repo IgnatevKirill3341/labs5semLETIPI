@@ -1,0 +1,14 @@
+[
+  {
+    "id": "1",
+    "username": "admin",
+    "password": "$2a$10$uyZ.Z7vPamJAr8NC4EFaveIoSi9qOMgS//FQ2u0eXEblw85G3kTl6",
+    "name": "Администратор"
+  },
+  {
+    "id": "a766f33b-ab58-40e8-91bc-022c6f43e3a8",
+    "username": "POP",
+    "password": "$2a$10$gxh9.TxGtmnufU6tC5Gdm..BRQ2tfPoAyycTdTPEgBhvaRvyFRe36",
+    "name": "POPOP"
+  }
+]

@@ -1,0 +1,116 @@
+extends layout
+
+block content
+  .book-detail-page
+    .detail-header
+      a.btn.btn-secondary(href='/books')
+        i.fas.fa-arrow-left
+        |  Назад к списку
+      h2
+        i.fas.fa-book
+        |  Карточка книги
+    
+    .book-detail-container
+      .book-cover-section
+        if book.coverImage
+          .book-cover-large
+            img(src=book.coverImage, alt=book.title)
+        else
+          .book-cover-large.placeholder
+            i.fas.fa-book
+        .cover-upload
+          input#coverInput(type='file', name='cover', accept='image/*', style='display: none')
+          button.btn.btn-secondary(type='button', onclick='document.getElementById("coverInput").click()')
+            i.fas.fa-upload
+            |  Загрузить обложку
+      
+      .book-info-section
+        form#editBookForm
+          .form-group
+            label(for='editTitle')
+              i.fas.fa-book
+              |  Название *
+            input#editTitle(type='text', name='title', value=book.title, required)
+          
+          .form-group
+            label(for='editAuthor')
+              i.fas.fa-user-edit
+              |  Автор *
+            input#editAuthor(type='text', name='author', value=book.author, required)
+          
+          .form-group
+            label(for='editReleaseDate')
+              i.fas.fa-calendar
+              |  Дата выпуска *
+            input#editReleaseDate(type='date', name='releaseDate', value=book.releaseDate, required, max='')
+          
+          .book-status-card
+            if book.isAvailable
+              .status-info.available
+                i.fas.fa-check-circle
+                h3 Книга в библиотеке
+                p Книга доступна для выдачи
+                button.btn.btn-primary#borrowBtn(type='button')
+                  i.fas.fa-hand-holding
+                  |  Выдать книгу
+            else
+              .status-info.borrowed
+                i.fas.fa-exclamation-circle
+                h3 Книга выдана
+                p
+                  i.fas.fa-user
+                  |  Читатель: 
+                  strong= book.borrowedBy
+                if book.returnDate
+                  - const today = new Date().toISOString().split('T')[0]
+                  - const isOverdue = book.returnDate < today
+                  p(class=isOverdue ? 'overdue' : '')
+                    i.fas.fa-clock
+                    |  Вернуть до: 
+                    strong= book.returnDate
+                    if isOverdue
+                      span.overdue-badge
+                        i.fas.fa-exclamation-triangle
+                        |  Просрочено
+                button.btn.btn-success#returnBtn(type='button')
+                  i.fas.fa-undo
+                  |  Вернуть книгу
+          
+          .form-actions
+            button.btn.btn-primary(type='submit')
+              i.fas.fa-save
+              |  Сохранить изменения
+    
+    // Borrow Book Modal
+    dialog#borrowModal
+      .modal-content
+        .modal-header
+          h3
+            i.fas.fa-hand-holding
+            |  Выдать книгу
+          button.modal-close#closeBorrowModal
+            i.fas.fa-times
+        .modal-body
+          form#borrowForm
+            .form-group
+              label(for='borrowerName')
+                i.fas.fa-user
+                |  Имя читателя *
+              input#borrowerName(type='text', name='borrowedBy', required)
+            .form-group
+              label(for='returnDate')
+                i.fas.fa-calendar
+                |  Дата возврата *
+              input#returnDate(type='date', name='returnDate', required)
+            .modal-actions
+              button.btn.btn-secondary(type='button', onclick='document.getElementById("borrowModal").close()')
+                i.fas.fa-times
+                |  Отмена
+              button.btn.btn-primary(type='submit')
+                i.fas.fa-check
+                |  Выдать
+
+block scripts
+  script.
+    const bookId = '#{book.id}';
+  script(src='/js/book-detail.js')

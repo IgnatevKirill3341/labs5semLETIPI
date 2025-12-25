@@ -1,0 +1,20 @@
+{
+  "name": "lab5web",
+  "version": "1.0.0",
+  "description": "Broker Exchange Configuration Web Application",
+  "scripts": {
+    "install:all": "cd backend && npm install && cd ../frontend && npm install",
+    "dev:backend": "cd backend && npm run start:dev",
+    "dev:frontend": "cd frontend && npm start",
+    "dev:frontend-vue": "cd frontend-vue && npm run dev",
+    "build:backend": "cd backend && npm run build",
+    "build:frontend": "cd frontend && npm run build",
+    "build:frontend-vue": "cd frontend-vue && npm run build",
+    "test:e2e": "cd frontend-vue && npm run test:e2e"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
+
+

@@ -1,0 +1,32 @@
+doctype html
+html(lang='ru')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title= title || 'Библиотека'
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css')
+    link(rel='stylesheet', href='/css/style.css')
+  body
+    if user
+      header.header
+        .container
+          .header-content
+            h1.logo
+              i.fas.fa-book
+              |  Домашняя библиотека
+            nav.nav
+              a.nav-link(href='/books')
+                i.fas.fa-list
+                |  Список книг
+              .user-info
+                i.fas.fa-user
+                span= user.name || user.username
+                a.logout-link(href='/logout')
+                  i.fas.fa-sign-out-alt
+                  |  Выход
+    
+    main.main
+      .container
+        block content
+    
+    block scripts
