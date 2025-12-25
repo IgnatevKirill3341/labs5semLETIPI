@@ -1,0 +1,3 @@
+/home/kpspdk/PA4LAB/build/CMakeFiles/pa4lab.dir
+/home/kpspdk/PA4LAB/build/CMakeFiles/edit_cache.dir
+/home/kpspdk/PA4LAB/build/CMakeFiles/rebuild_cache.dir

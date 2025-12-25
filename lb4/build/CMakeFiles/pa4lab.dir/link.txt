@@ -1,0 +1,1 @@
+/usr/bin/c++ -Wl,--dependency-file=CMakeFiles/pa4lab.dir/link.d CMakeFiles/pa4lab.dir/src/main.cpp.o -o pa4lab  /usr/lib/libOpenCL.so
